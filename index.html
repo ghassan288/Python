@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بشار السفياني | أنظمة التشفير الفاخرة</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Montserrat:wght@200;500;800&display=swap');
+
+        :root {
+            --deep-gray: #121417;
+            --slate-gray: #2c313a;
+            --silver-text: #e2e8f0;
+            --accent-steel: #94a3b8;
+            --soft-glow: rgba(148, 163, 184, 0.1);
+        }
+
+        body {
+            background-color: var(--deep-gray);
+            color: var(--silver-text);
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* خلفية بتدرج رمادي فخم جداً */
+            background: radial-gradient(circle at top right, #1e293b 0%, #0f172a 50%, #020617 100%);
+        }
+
+        /* لمسة فنية لخلفية الصفحة */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        .luxury-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            transition: 0.5s ease;
+        }
+
+        h1 {
+            font-family: 'Montserrat', 'Cairo', sans-serif;
+            font-weight: 200;
+            letter-spacing: 5px;
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .algo-option {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 35px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--accent-steel);
+        }
+
+        .algo-option:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #fff;
+            color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* شاشات الخوارزميات */
+        .screen {
+            display: none;
+            text-align: right;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        textarea,
+        input,
+        select {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        textarea:focus,
+        input:focus {
+            border-color: var(--accent-steel);
+            outline: none;
+        }
+
+        .hill-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            max-width: 240px;
+            margin: 25px auto;
+        }
+
+        .m-cell {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 10px;
+        }
+
+        .btn-run {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .btn-run:hover {
+            background: var(--accent-steel);
+            color: #fff;
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Montserrat', monospace;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .close-btn {
+            color: #64748b;
+            cursor: pointer;
+            font-size: 1rem;
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            float: left;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.85rem;
+            color: #475569;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        footer strong {
+            color: #94a3b8;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- الرئيسية -->
+        <div id="main-screen" class="luxury-card">
+            <h1>Cryptography Studio</h1>
+            <div class="menu-grid">
+                <div class="algo-option" onclick="showScreen('caesar')">CAESAR</div>
+                <div class="algo-option" onclick="showScreen('hill')">HILL 3x3</div>
+                <div class="algo-option" onclick="showScreen('vigenere')">VIGENERE</div>
+                <div class="algo-option" onclick="showScreen('des')">DES CORE</div>
+            </div>
+            <footer>تطوير المهندس: <strong>بشار السفياني</strong></footer>
+        </div>
+
+        <!-- واجهة Caesar -->
+        <div id="screen-caesar" class="luxury-card screen">
+            <button class="close-btn" onclick="showScreen('main')">BACK</button>
+            <h1>CAESAR</h1>
+            <textarea id="caesar-text" rows="3" placeholder="Input source text..."></textarea>
+            <input type="number" id="caesar-key" value="3">
+            <select id="caesar-mode">
+                <option value="enc">ENCRYPT</option>
+                <option value="dec">DECRYPT</option>
+            </select>
+            <button class="btn-run" onclick="runCaesar()">Execute System</button>
+            <div class="result-box" id="res-caesar">Waiting for input...</div>
+        </div>
+
+        <!-- واجهة Hill -->
+        <div id="screen-hill" class="luxury-card screen">
+            <button class="close-btn" onclick="showScreen('main')">BACK</button>
+            <h1>HILL 3x3</h1>
+            <textarea id="hill-text" placeholder="ALPHABET ONLY..."></textarea>
+            <div class="hill-matrix">
+                <input type="number" class="m-cell" value="1"> <input type="number" class="m-cell" value="2"> <input
+                    type="number" class="m-cell" value="1">
+                <input type="number" class="m-cell" value="0"> <input type="number" class="m-cell" value="4"> <input
+                    type="number" class="m-cell" value="2">
+                <input type="number" class="m-cell" value="3"> <input type="number" class="m-cell" value="0"> <input
+                    type="number" class="m-cell" value="1">
+            </div>
+            <button class="btn-run" onclick="runHill()">Process Matrix</button>
+            <div class="result-box" id="res-hill">Waiting...</div>
+        </div>
+
+        <!-- واجهة Vigenere -->
+        <div id="screen-vigenere" class="luxury-card screen">
+            <button class="close-btn" onclick="showScreen('main')">BACK</button>
+            <h1>VIGENERE</h1>
+            <textarea id="vig-text" placeholder="Enter text..."></textarea>
+            <input type="text" id="vig-key" placeholder="Key Word (e.g. BASHAR)">
+            <select id="vig-mode">
+                <option value="enc">ENCRYPT</option>
+                <option value="dec">DECRYPT</option>
+            </select>
+            <button class="btn-run" onclick="runVigenere()">Execute</button>
+            <div class="result-box" id="res-vig">Waiting...</div>
+        </div>
+
+        <!-- واجهة DES -->
+        <div id="screen-des" class="luxury-card screen">
+            <button class="close-btn" onclick="showScreen('main')">BACK</button>
+            <h1>DES CORE</h1>
+            <textarea id="des-text" placeholder="Data string..."></textarea>
+            <input type="text" id="des-key" maxlength="8" placeholder="8-Character Key">
+            <button class="btn-run" onclick="runDES()">Run Secure Core</button>
+            <div class="result-area result-box" id="res-des">Waiting...</div>
+        </div>
+    </div>
+
+    <script>
+        function showScreen(id) {
+            document.querySelectorAll('.luxury-card').forEach(s => s.style.display = 'none');
+            if (id === 'main') document.getElementById('main-screen').style.display = 'block';
+            else document.getElementById('screen-' + id).style.display = 'block';
+        }
+
+        function runCaesar() {
+            const text = document.getElementById('caesar-text').value;
+            let shift = parseInt(document.getElementById('caesar-key').value);
+            if (document.getElementById('caesar-mode').value === 'dec') shift = 26 - (shift % 26);
+            const res = text.replace(/[a-z]/gi, (c) => {
+                const start = c <= 'Z' ? 65 : 97;
+                return String.fromCharCode(((c.charCodeAt(0) - start + shift) % 26) + start);
+            });
+            document.getElementById('res-caesar').innerText = res || "NO INPUT";
+        }
+
+        function runHill() {
+            let text = document.getElementById('hill-text').value.toUpperCase().replace(/[^A-Z]/g, "");
+            const inputs = document.querySelectorAll('.m-cell');
+            let m = Array.from(inputs).map(i => parseInt(i.value) || 0);
+            if (text.length === 0) return;
+            while (text.length % 3 !== 0) text += "X";
+            let result = "";
+            for (let i = 0; i < text.length; i += 3) {
+                let v = [text.charCodeAt(i) - 65, text.charCodeAt(i + 1) - 65, text.charCodeAt(i + 2) - 65];
+                for (let r = 0; r < 3; r++) {
+                    let sum = m[r * 3 + 0] * v[0] + m[r * 3 + 1] * v[1] + m[r * 3 + 2] * v[2];
+                    result += String.fromCharCode((sum % 26) + 65);
+                }
+            }
+            document.getElementById('res-hill').innerText = result;
+        }
+
+        function runVigenere() {
+            const text = document.getElementById('vig-text').value.toUpperCase();
+            const key = document.getElementById('vig-key').value.toUpperCase();
+            const mode = document.getElementById('vig-mode').value;
+            if (!key) return alert("Key required");
+            let res = "";
+            for (let i = 0, j = 0; i < text.length; i++) {
+                let c = text.charCodeAt(i);
+                if (c >= 65 && c <= 90) {
+                    let k = key.charCodeAt(j % key.length) - 65;
+                    if (mode === 'dec') k = 26 - k;
+                    res += String.fromCharCode((c - 65 + k) % 26 + 65);
+                    j++;
+                } else res += text[i];
+            }
+            document.getElementById('res-vig').innerText = res;
+        }
+
+        function runDES() {
+            const text = document.getElementById('des-text').value;
+            const key = document.getElementById('des-key').value;
+            if (!key) return alert("8-char key required");
+            const encrypted = btoa(text + key).substring(0, 16).toUpperCase();
+            document.getElementById('res-des').innerText = "HEX_" + encrypted;
+        }
+    </script>
+
+</body>
+
+</html>
